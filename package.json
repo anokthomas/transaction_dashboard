@@ -1,0 +1,33 @@
+{
+  "name": "transaction-dashboard",
+  "version": "1.0.0",
+  "description": "Real-Time Transaction Dashboard - A full-stack application for monitoring financial transactions",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
+    "build": "cd frontend && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "transactions",
+    "dashboard",
+    "real-time",
+    "fintech",
+    "fraud-detection",
+    "react",
+    "nodejs",
+    "postgresql"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

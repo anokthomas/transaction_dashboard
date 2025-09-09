@@ -1,0 +1,40 @@
+version: 2
+
+build:
+  os: ubuntu-20.04
+  tools:
+    node: 18
+
+run:
+  # Install dependencies
+  - name: Install Backend Dependencies
+    cmd: cd backend && npm install
+  
+  - name: Install Frontend Dependencies  
+    cmd: cd frontend && npm install
+    
+  - name: Build Frontend
+    cmd: cd frontend && npm run build
+
+services:
+  - type: web
+    name: transaction-dashboard
+    runtime: node
+    plan: starter
+    buildCommand: |
+      cd backend && npm install &&
+      cd ../frontend && npm install && npm run build
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_URL
+        fromService:
+          type: web
+          name: transaction-dashboard
+          property: url
+
+databases:
+  - name: transaction-db
+    databaseName: transaction_dashboard
+    plan: starter
